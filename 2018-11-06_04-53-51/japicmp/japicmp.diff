@@ -1,0 +1,76 @@
+Comparing source compatibility of /home/travis/build/dannil/scb-java-client/target/scb-java-client-2.1.0-SNAPSHOT.jar against /home/travis/.m2/repository/com/github/dannil/scb-java-client/2.0.0/scb-java-client-2.0.0.jar
+***  MODIFIED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.EnvironmentClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	===  UNCHANGED METHOD: PUBLIC com.github.dannil.scbjavaclient.client.environment.islands.EnvironmentIslandsClient islands()
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	===  UNCHANGED METHOD: PUBLIC com.github.dannil.scbjavaclient.client.environment.landusedfortransport.EnvironmentLandUsedForTransportClient landUsedForTransport()
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.EnvironmentShorelineLandUseClient shorelineLandUse()
+===  UNCHANGED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.islands.EnvironmentIslandsClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	+++  NEW ANNOTATION: java.lang.Deprecated
+***  MODIFIED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.landuse.EnvironmentLandUseClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.landuse.infrastructurefortransport.EnvironmentLandUseInfrastructureForTransportClient infrastructureForTransport()
++++  NEW CLASS: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.landuse.infrastructurefortransport.EnvironmentLandUseInfrastructureForTransportClient  (not serializable)
+	+++  CLASS FILE FORMAT VERSION: 52.0 <- n.a.
+	+++  NEW SUPERCLASS: com.github.dannil.scbjavaclient.client.AbstractClient
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentLandUseInfrastructureForTransportClient(java.util.Locale)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentLandUseInfrastructureForTransportClient()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRailways()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRailways(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadArea()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadArea(java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadLengthByCategory()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadLengthByCategory(java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadLengthByOwner()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getRoadLengthByOwner(java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getTransportInfrastructureArea()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getTransportInfrastructureArea(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.communication.URLEndpoint getUrl()
+===  UNCHANGED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.landusedfortransport.EnvironmentLandUsedForTransportClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	+++  NEW ANNOTATION: java.lang.Deprecated
++++  NEW CLASS: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.EnvironmentShorelineLandUseClient  (not serializable)
+	+++  CLASS FILE FORMAT VERSION: 52.0 <- n.a.
+	+++  NEW SUPERCLASS: com.github.dannil.scbjavaclient.client.AbstractContainerClient
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseClient()
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseClient(java.util.Locale)
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.communication.URLEndpoint getUrl()
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.landuse.EnvironmentShorelineLandUseLandUseClient landUse()
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.oldtables.EnvironmentShorelineLandUseOldTablesClient oldTables()
++++  NEW CLASS: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.landuse.EnvironmentShorelineLandUseLandUseClient  (not serializable)
+	+++  CLASS FILE FORMAT VERSION: 52.0 <- n.a.
+	+++  NEW SUPERCLASS: com.github.dannil.scbjavaclient.client.AbstractClient
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseLandUseClient(java.util.Locale)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseLandUseClient()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getBuildingsOnIslands()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getBuildingsOnIslands(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getIslandsInSweden()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getIslandsInSweden(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getIslandsInSwedenByNumberAreaAndPerimiter()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getIslandsInSwedenByNumberAreaAndPerimiter(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getNumberOfIslandsInSweden()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getNumberOfIslandsInSweden(java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulatedIslands()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulatedIslands(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulationOnIslands()
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulationOnIslands(java.util.Collection, java.util.Collection)
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++  NEW METHOD: PUBLIC(+) java.util.List getShorelinePopulation()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getShorelinePopulation(java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.communication.URLEndpoint getUrl()
++++  NEW CLASS: PUBLIC(+) com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.oldtables.EnvironmentShorelineLandUseOldTablesClient  (not serializable)
+	+++  CLASS FILE FORMAT VERSION: 52.0 <- n.a.
+	+++  NEW SUPERCLASS: com.github.dannil.scbjavaclient.client.AbstractClient
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseOldTablesClient()
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EnvironmentShorelineLandUseOldTablesClient(java.util.Locale)
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulationOnIslands()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getPopulationOnIslands(java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.communication.URLEndpoint getUrl()
+***  MODIFIED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.waste.EnvironmentWasteClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	===  UNCHANGED METHOD: PUBLIC java.util.List getGeneratedWaste(java.util.Collection, java.util.Collection, java.util.Collection)
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	+++  NEW METHOD: PUBLIC(+) java.util.List getGeneratedWaste(java.util.Collection, java.util.Collection, java.util.Collection, java.util.Collection)
