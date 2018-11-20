@@ -1,0 +1,12 @@
+Comparing source compatibility of /home/travis/build/dannil/scb-java-client/target/scb-java-client-2.2.0-SNAPSHOT.jar against /home/travis/.m2/repository/com/github/dannil/scb-java-client/2.1.0/scb-java-client-2.1.0.jar
+***  MODIFIED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.educationandresearch.EducationAndResearchClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.client.educationandresearch.folkhighschoolstatistics.EducationAndResearchFolkHighSchoolStatisticsClient folkHighSchoolStatistics()
++++  NEW CLASS: PUBLIC(+) com.github.dannil.scbjavaclient.client.educationandresearch.folkhighschoolstatistics.EducationAndResearchFolkHighSchoolStatisticsClient  (not serializable)
+	+++  CLASS FILE FORMAT VERSION: 52.0 <- n.a.
+	+++  NEW SUPERCLASS: com.github.dannil.scbjavaclient.client.AbstractClient
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EducationAndResearchFolkHighSchoolStatisticsClient(java.util.Locale)
+	+++  NEW CONSTRUCTOR: PUBLIC(+) EducationAndResearchFolkHighSchoolStatisticsClient()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getParticipants()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getParticipants(java.util.Collection, java.util.Collection, java.util.Collection, java.util.Collection)
+	+++  NEW METHOD: PUBLIC(+) com.github.dannil.scbjavaclient.communication.URLEndpoint getUrl()
