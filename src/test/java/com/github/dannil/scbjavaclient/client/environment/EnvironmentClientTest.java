@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Locale;
 
+import org.junit.jupiter.api.Test;
+
 import com.github.dannil.scbjavaclient.client.environment.airpollutants.EnvironmentAirPollutantsClient;
 import com.github.dannil.scbjavaclient.client.environment.greenhousegas.EnvironmentGreenhouseGasClient;
 import com.github.dannil.scbjavaclient.client.environment.islands.EnvironmentIslandsClient;
@@ -27,14 +29,14 @@ import com.github.dannil.scbjavaclient.client.environment.landusedfortransport.E
 import com.github.dannil.scbjavaclient.client.environment.packagingandpackagingwaste.EnvironmentPackagingAndPackagingWasteClient;
 import com.github.dannil.scbjavaclient.client.environment.protectednature.EnvironmentProtectedNatureClient;
 import com.github.dannil.scbjavaclient.client.environment.seea.EnvironmentSEEAClient;
+import com.github.dannil.scbjavaclient.client.environment.shorelinelanduse.EnvironmentShorelineLandUseClient;
 import com.github.dannil.scbjavaclient.client.environment.smallerlocalities.EnvironmentSmallerLocalitiesClient;
 import com.github.dannil.scbjavaclient.client.environment.waste.EnvironmentWasteClient;
-import com.github.dannil.scbjavaclient.http.URLEndpoint;
+import com.github.dannil.scbjavaclient.communication.URLEndpoint;
 import com.github.dannil.scbjavaclient.test.extensions.Suite;
 
-import org.junit.jupiter.api.Test;
-
 @Suite
+@SuppressWarnings("deprecation")
 public class EnvironmentClientTest {
 
     @Test
@@ -106,6 +108,13 @@ public class EnvironmentClientTest {
         EnvironmentClient client = new EnvironmentClient();
 
         assertEquals(EnvironmentSEEAClient.class, client.seea().getClass());
+    }
+    
+    @Test
+    public void shorelineLandUse() {
+        EnvironmentClient client = new EnvironmentClient();
+
+        assertEquals(EnvironmentShorelineLandUseClient.class, client.shorelineLandUse().getClass());
     }
 
     @Test
