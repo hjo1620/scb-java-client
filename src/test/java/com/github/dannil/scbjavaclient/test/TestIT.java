@@ -134,7 +134,7 @@ public class TestIT {
         for (File fileMain : mainFiles) {
             // Convert path into binary name
             String binaryNameMain = Files.fileToBinaryName(fileMain);
-            if (binaryNameMain.contains("package-info")) {
+            if (binaryNameMain.contains("package-info") || binaryNameMain.endsWith("module-info")) {
                 continue;
             }
 
@@ -185,7 +185,7 @@ public class TestIT {
         for (File f : mainFiles) {
             // Convert path into binary name
             String binaryNameMain = Files.fileToBinaryName(f);
-            if (binaryNameMain.endsWith("package-info")) {
+            if (binaryNameMain.endsWith("package-info") || binaryNameMain.endsWith("module-info")) {
                 continue;
             }
 
