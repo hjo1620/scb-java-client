@@ -1,0 +1,11 @@
+Comparing source compatibility of /home/travis/build/dannil/scb-java-client/target/scb-java-client-2.3.0-SNAPSHOT.jar against /home/travis/.m2/repository/com/github/dannil/scb-java-client/2.2.0/scb-java-client-2.2.0.jar
+===  UNCHANGED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.landuse.infrastructurefortransport.EnvironmentLandUseInfrastructureForTransportClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	===  UNCHANGED METHOD: PUBLIC java.util.List getTransportInfrastructureArea()
+		+++  NEW ANNOTATION: java.lang.Deprecated
+	===  UNCHANGED METHOD: PUBLIC java.util.List getTransportInfrastructureArea(java.util.Collection, java.util.Collection)
+		+++  NEW ANNOTATION: java.lang.Deprecated
+***  MODIFIED CLASS: PUBLIC com.github.dannil.scbjavaclient.client.environment.landuse.usage.EnvironmentLandUseUsageClient  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 52.0 <- 52.0
+	+++  NEW METHOD: PUBLIC(+) java.util.List getTransportInfrastructureArea()
+	+++  NEW METHOD: PUBLIC(+) java.util.List getTransportInfrastructureArea(java.util.Collection, java.util.Collection)
