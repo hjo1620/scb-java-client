@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractRequester.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scb-java-client</a> &gt; <a href="index.source.html" class="el_package">com.github.dannil.scbjavaclient.communication.http.requester</a> &gt; <span class="el_source">AbstractRequester.java</span></div><h1>AbstractRequester.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2018 Daniel Nilsson
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.github.dannil.scbjavaclient.communication.http.requester;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+
+import com.github.dannil.scbjavaclient.communication.http.HttpResponse;
+import com.github.dannil.scbjavaclient.communication.http.HttpStatusCode;
+import com.github.dannil.scbjavaclient.exception.SCBClientException;
+
+/**
+ * &lt;p&gt;Class which contains the logic for sending URL requests to a specified address.&lt;/p&gt;
+ *
+ * @since 1.2.0
+ */
+public abstract class AbstractRequester {
+
+    private static final int HTTP_ERRORS_START_CODE = 400;
+
+    private static Properties properties;
+
+    private Charset charset;
+
+    private Map&lt;String, String&gt; requestProperties;
+
+    static {
+<span class="fc" id="L50">        properties = new Properties();</span>
+<span class="fc" id="L51">        ClassLoader loader = Thread.currentThread().getContextClassLoader();</span>
+<span class="fc" id="L52">        try (InputStream input = loader.getResourceAsStream(&quot;project.properties&quot;)) {</span>
+<span class="fc" id="L53">            properties.load(input);</span>
+<span class="nc" id="L54">        } catch (IOException e) {</span>
+<span class="nc" id="L55">            throw new SCBClientException(e);</span>
+<span class="fc" id="L56">        }</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * &lt;p&gt;Default constructor. Specifies the charset to be used for requests as UTF-8.&lt;/p&gt;
+     */
+    protected AbstractRequester() {
+<span class="fc" id="L63">        this(StandardCharsets.UTF_8);</span>
+<span class="fc" id="L64">    }</span>
+
+    /**
+     * &lt;p&gt;Overloaded constructor. Loads the request properties and other data needed for
+     * the requesters.&lt;/p&gt;
+     *
+     * @param charset
+     *            the charset to use when doing a request
+     */
+<span class="fc" id="L73">    protected AbstractRequester(Charset charset) {</span>
+<span class="fc" id="L74">        this.requestProperties = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L75">        this.requestProperties.put(&quot;Accept&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L76">        this.requestProperties.put(&quot;User-Agent&quot;, createUserAgent());</span>
+<span class="fc" id="L77">        setCharset(charset);</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+     * &lt;p&gt;Retrieves the &lt;code&gt;URLConnection&lt;/code&gt; that represents the specified URL. This
+     * method sets the request properties for the &lt;code&gt;URLConnection&lt;/code&gt; being
+     * retrieved.&lt;/p&gt;
+     *
+     * @param url
+     *            the URL
+     * @return a &lt;code&gt;URLConnection&lt;/code&gt;
+     * @throws IOException
+     *             if an exception occurred when creating the &lt;code&gt;URLConnection&lt;/code&gt;
+     */
+    protected URLConnection getConnection(String url) throws IOException {
+<span class="fc" id="L92">        URLConnection connection = new URL(url).openConnection();</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        for (Entry&lt;String, String&gt; entry : this.requestProperties.entrySet()) {</span>
+<span class="fc" id="L94">            connection.setRequestProperty(entry.getKey(), entry.getValue());</span>
+<span class="fc" id="L95">        }</span>
+<span class="fc" id="L96">        return connection;</span>
+    }
+
+    /**
+     * &lt;p&gt;Retrieves the response from the specified &lt;code&gt;URLConnection&lt;/code&gt;.&lt;/p&gt;
+     *
+     * @param connection
+     *            the &lt;code&gt;URLConnection&lt;/code&gt;
+     * @return the response as an {@link com.github.dannil.scbjavaclient.communication.http.HttpResponse
+     *         Response}
+     * @throws IOException
+     *             if an exception occurred while retrieving the &lt;code&gt;Response&lt;/code&gt;
+     */
+    protected HttpResponse getResponse(URLConnection connection) throws IOException {
+<span class="fc" id="L110">        HttpURLConnection httpConnection = (HttpURLConnection) connection;</span>
+<span class="fc" id="L111">        HttpStatusCode status = HttpStatusCode.valueOf(httpConnection.getResponseCode());</span>
+<span class="fc" id="L112">        InputStream stream = null;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (status.getCode() &lt; HTTP_ERRORS_START_CODE) {</span>
+<span class="fc" id="L114">            stream = httpConnection.getInputStream();</span>
+        }
+<span class="fc" id="L116">        return new HttpResponse(status, stream);</span>
+    }
+
+    /**
+     * &lt;p&gt;Retrieves the response from the specified URL.&lt;/p&gt;
+     *
+     * @param url
+     *            the URL to call
+     * @return the response as an {@link com.github.dannil.scbjavaclient.communication.http.HttpResponse
+     *         Response}
+     */
+    public abstract HttpResponse getResponse(String url);
+
+    /**
+     * &lt;p&gt;Getter for charset.&lt;/p&gt;
+     *
+     * @return the charset
+     */
+    public final Charset getCharset() {
+<span class="fc" id="L135">        return this.charset;</span>
+    }
+
+    /**
+     * &lt;p&gt;Setter for charset.&lt;/p&gt;
+     *
+     * @param charset
+     *            the charset
+     */
+    public final void setCharset(Charset charset) {
+<span class="fc" id="L145">        this.charset = charset;</span>
+<span class="fc" id="L146">        this.requestProperties.put(&quot;Accept-Charset&quot;, this.charset.name());</span>
+<span class="fc" id="L147">        this.requestProperties.put(&quot;Content-Type&quot;,</span>
+<span class="fc" id="L148">                &quot;application/json; charset=&quot; + this.charset.name().toLowerCase(Locale.ENGLISH));</span>
+<span class="fc" id="L149">    }</span>
+
+    /**
+     * &lt;p&gt;Creates the user agent string.&lt;/p&gt;
+     *
+     * @return the user agent string
+     */
+    private String createUserAgent() {
+<span class="fc" id="L157">        String artifactId = properties.getProperty(&quot;artifactId&quot;);</span>
+<span class="fc" id="L158">        String version = properties.getProperty(&quot;version&quot;);</span>
+<span class="fc" id="L159">        String url = properties.getProperty(&quot;url&quot;);</span>
+
+<span class="fc" id="L161">        StringBuilder builder = new StringBuilder();</span>
+<span class="fc" id="L162">        builder.append(artifactId);</span>
+<span class="fc" id="L163">        builder.append('/');</span>
+<span class="fc" id="L164">        builder.append(version);</span>
+<span class="fc" id="L165">        builder.append(&quot; (&quot;);</span>
+<span class="fc" id="L166">        builder.append(url);</span>
+<span class="fc" id="L167">        builder.append(&quot;), &quot;);</span>
+<span class="fc" id="L168">        builder.append(System.getProperty(&quot;os.name&quot;));</span>
+
+<span class="fc" id="L170">        return builder.toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
