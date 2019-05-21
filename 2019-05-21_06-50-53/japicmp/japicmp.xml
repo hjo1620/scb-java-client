@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<japicmp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" accessModifier="PROTECTED" creationTimestamp="2019-05-21T06:49:16.983+0000" ignoreMissingClasses="false" ignoreMissingClassesByRegularExpressions="" newJar="/home/travis/build/dannil/scb-java-client/target/scb-java-client-2.4.0-SNAPSHOT.jar" newVersion="2.4.0-SNAPSHOT" oldJar="/home/travis/.m2/repository/com/github/dannil/scb-java-client/2.3.0/scb-java-client-2.3.0.jar" oldVersion="2.3.0" onlyBinaryIncompatibleModifications="false" onlyModifications="true" packagesExclude="n.a." packagesInclude="all" semanticVersioning="0.0.0" title="Comparing source compatibility of /home/travis/build/dannil/scb-java-client/target/scb-java-client-2.4.0-SNAPSHOT.jar against /home/travis/.m2/repository/com/github/dannil/scb-java-client/2.3.0/scb-java-client-2.3.0.jar" xsi:noNamespaceSchemaLocation="japicmp.xsd">
+    <classes/>
+</japicmp>
